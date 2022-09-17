@@ -23,5 +23,17 @@ void init_umd(void)
 
 void process_xyz(uint8_t byte)
 {
-
+    //error handling
+    uint8_t header_check[] = {'X', 'Y', 'Z', '!'};
+    
+     if (ind < 4 && header_check[ind] != byte)
+        ind = 0;
+    if (ind == 5 && byte > 2 )
+        ind = 0;
+    if (byte == 'X')
+    {
+        ind = 0;
+        for (int i = 0; i < sizeof temp_m; i++)
+            temp_m[i] = 0;
+    }
 }
